@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/fr_main_window_city_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            tools:text="Moscow"
+            android:layout_marginTop="@dimen/default_margin"
+            android:layout_marginLeft="@dimen/default_margin" />
+
+        <TextView
+            android:id="@+id/fr_main_window_degrees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="50"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginLeft="@dimen/default_margin" />
+
+    </LinearLayout>
+
+    <AutoCompleteTextView
+        android:id="@+id/fr_main_window_city_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin"
+        android:maxLines="1"
+        android:inputType="text"
+        android:hint="@string/search_for_your_city"/>
+
+</LinearLayout>
