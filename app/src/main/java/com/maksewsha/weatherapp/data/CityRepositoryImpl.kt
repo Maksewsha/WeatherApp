@@ -13,7 +13,13 @@ class CityRepositoryImpl(private val networkStorage: NetworkCityStorage, private
     override fun getById(id: Int): CityWeatherDomain {
         val dataFromSharedPref = localStorage.getById(id)
 
-        return mapper.mapFromEntity(dataFromSharedPref ?: networkStorage.getById(id))
+        if (dataFromSharedPref == null){
+            val dataFromNetwork = networkStorage.getById(id)
+            save(dataFromNetwork)
+            return mapper.mapFromEntity(dataFromNetwork)
+        }
+
+        return mapper.mapFromEntity(dataFromSharedPref)
     }
 
     override fun save(cityWeatherDomain: CityWeatherDomain): Boolean {
