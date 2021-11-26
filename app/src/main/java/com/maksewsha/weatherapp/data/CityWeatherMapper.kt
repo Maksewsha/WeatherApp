@@ -6,10 +6,10 @@ import com.maksewsha.weatherapp.domain.util.EntityMapper
 
 class CityWeatherMapper : EntityMapper<CityWeatherData, CityWeatherDomain> {
     override fun mapFromEntity(entity: CityWeatherData): CityWeatherDomain = CityWeatherDomain(
-        cityName = entity.name,
         id = entity.id,
+        name = entity.name,
         country = entity.sys.country,
         temp = entity.main.temp,
-        description = entity.weather[0].description
+        weatherDescription = entity.weather[0].description
     )
 }

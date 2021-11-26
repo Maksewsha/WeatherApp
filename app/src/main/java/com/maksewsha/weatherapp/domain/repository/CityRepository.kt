@@ -4,7 +4,7 @@ import com.maksewsha.weatherapp.domain.models.CityWeatherDomain
 
 interface CityRepository {
 
-    fun getById() : CityWeatherDomain
+    fun getById(id: Int) : CityWeatherDomain
 
     fun save(cityWeatherDomain: CityWeatherDomain) : Boolean
 }

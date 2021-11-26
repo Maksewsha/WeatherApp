@@ -1,11 +1,7 @@
 package com.maksewsha.weatherapp.data.models
 
 import com.maksewsha.weatherapp.data.models.weathermodels.*
-import com.maksewsha.weatherapp.domain.models.weathermodels.CoordsInfo
-import com.maksewsha.weatherapp.domain.models.weathermodels.MainInfo
-import com.maksewsha.weatherapp.domain.models.weathermodels.SysInfo
-import com.maksewsha.weatherapp.domain.models.weathermodels.WeatherInfo
-import com.maksewsha.weatherapp.domain.models.weathermodels.WindInfo
+import com.maksewsha.weatherapp.domain.models.CityWeatherDomain
 
 data class CityWeatherData(
     val coords: CoordsInfo,
@@ -18,7 +14,7 @@ data class CityWeatherData(
     val dt: Long,
     val sys: SysInfo,
     val timezone: Int,
-    val id: Long,
-    val name: String,
+    override val id: Long,
+    override val name: String,
     val cod: Int
-)
+) : CityWeatherDomain()
