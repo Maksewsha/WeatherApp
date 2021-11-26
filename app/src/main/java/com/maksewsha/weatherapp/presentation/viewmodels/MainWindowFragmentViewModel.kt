@@ -11,7 +11,7 @@ class MainWindowFragmentViewModel(private val getWeatherUseCase: GetWeatherUseCa
     private val data = MutableLiveData<CityWeatherDomain>()
     val cityWeather = data as LiveData<CityWeatherDomain>
 
-    fun getCityWeather(id: Int){
-        data.value = getWeatherUseCase.getWeatherById(id)
+    fun getCityWeather(name: String){
+        data.value = getWeatherUseCase.getWeatherByName(name)
     }
 }

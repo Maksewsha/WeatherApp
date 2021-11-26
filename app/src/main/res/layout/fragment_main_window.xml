@@ -32,7 +32,7 @@
 
     </LinearLayout>
 
-    <AutoCompleteTextView
+    <EditText
         android:id="@+id/fr_main_window_city_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -40,5 +40,10 @@
         android:maxLines="1"
         android:inputType="text"
         android:hint="@string/search_for_your_city"/>
+    <Button
+        android:id="@+id/fr_main_window_btn_search"
+        android:layout_width="match_parent"
+        android:text="@string/search"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

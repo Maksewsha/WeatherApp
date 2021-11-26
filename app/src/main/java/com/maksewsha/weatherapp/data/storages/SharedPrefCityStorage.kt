@@ -14,9 +14,9 @@ class SharedPrefCityStorage(context: Context) : CityStorage {
 
     private val sharedPrefs = context.getSharedPreferences(KEY_PREFS_CITY_LIST, Context.MODE_PRIVATE)
 
-    override fun getById(id: Int): CityWeatherData?{
-        return if (sharedPrefs.contains("$id")){
-            val data = sharedPrefs.getString("$id", "")
+    override fun getByName(name: String): CityWeatherData?{
+        return if (sharedPrefs.contains("$name")){
+            val data = sharedPrefs.getString("$name", "")
             gson.fromJson(data!!.reader(), CityWeatherData::class.java)
         } else {
             null

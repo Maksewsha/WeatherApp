@@ -5,7 +5,7 @@ import com.maksewsha.weatherapp.domain.repository.CityRepository
 
 class GetWeatherUseCase(private val cityRepository: CityRepository) {
 
-    fun getWeatherById(id: Int): CityWeatherDomain{
-        return cityRepository.getById(id)
+    fun getWeatherByName(name: String): CityWeatherDomain{
+        return cityRepository.getByName(name)
     }
 }
