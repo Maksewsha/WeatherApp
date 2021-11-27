@@ -1,6 +1,7 @@
 package com.maksewsha.weatherapp.data
 
 import com.maksewsha.weatherapp.data.models.CityWeatherData
+import com.maksewsha.weatherapp.data.models.CityWeatherNetworkData
 import com.maksewsha.weatherapp.data.storages.CityStorage
 import com.maksewsha.weatherapp.data.storages.NetworkCityStorage
 import com.maksewsha.weatherapp.domain.models.CityWeather
@@ -14,17 +15,22 @@ class CityRepositoryImpl(private val networkStorage: NetworkCityStorage, private
     override fun getByName(name: String): CityWeatherDomain {
         val dataFromSharedPref = localStorage.getByName(name)
 
-        if (dataFromSharedPref == null){
+        if (dataFromSharedPref is CityWeatherData.Fail){
             val dataFromNetwork = networkStorage.getByName(name)
-            save(dataFromNetwork)
-            return mapper.mapFromEntity(dataFromNetwork)
+            return if (dataFromNetwork !is CityWeatherData.Fail){
+                save((dataFromNetwork as CityWeatherData.Success).cityWeatherNetworkData)
+                mapper.mapFromEntity(dataFromNetwork)
+            } else {
+                mapper.mapFromEntity(dataFromNetwork)
+            }
         }
+
 
         return mapper.mapFromEntity(dataFromSharedPref)
     }
 
     override fun save(cityWeather: CityWeather): Boolean {
-        return localStorage.save(cityWeather as CityWeatherData)
+        return localStorage.save(cityWeather as CityWeatherNetworkData)
     }
 }
 

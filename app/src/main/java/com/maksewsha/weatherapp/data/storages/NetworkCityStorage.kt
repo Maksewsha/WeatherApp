@@ -10,9 +10,7 @@ import java.util.concurrent.ExecutorService
 
 class NetworkCityStorage{
 
-    private val networkLoader = NetworkLoader()
-
     fun getByName(name: String): CityWeatherData {
-        return networkLoader.execute(name).get()
+        return NetworkLoader().execute(name).get()
     }
 }

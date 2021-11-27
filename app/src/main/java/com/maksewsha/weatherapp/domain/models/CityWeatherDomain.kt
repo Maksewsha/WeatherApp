@@ -1,9 +1,6 @@
 package com.maksewsha.weatherapp.domain.models
 
-class CityWeatherDomain(
-    open val id: Long? = null,
-    open val name: String? = null,
-    open val country: String? = null,
-    open val temp: Float? = null,
-    open val weatherDescription: String? = null
-): CityWeather()
+sealed class CityWeatherDomain : CityWeather(){
+    class Success(val cityWeatherInfoDomain: CityWeatherInfoDomain): CityWeatherDomain()
+    class Fail(val exception: Exception): CityWeatherDomain()
+}

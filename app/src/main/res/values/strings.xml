@@ -2,4 +2,5 @@
     <string name="app_name">WeatherApp</string>
     <string name="search_for_your_city">Search for your city</string>
     <string name="search">Search</string>
+    <string name="errorIncorrectName">Incorrect city\u0027s name</string>
 </resources>

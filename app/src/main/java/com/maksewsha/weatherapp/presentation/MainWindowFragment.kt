@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import com.maksewsha.weatherapp.R
 import com.maksewsha.weatherapp.presentation.viewmodels.MainWindowFragmentViewModel
 import com.maksewsha.weatherapp.presentation.viewmodels.MainWindowFragmentViewModelFactory
@@ -32,6 +33,10 @@ class MainWindowFragment : Fragment(R.layout.fragment_main_window) {
         viewModel.cityWeather.observe(this, {
             textViewCityName.text = it.name
             textViewCityDegrees.text = it.temp.toString()
+        })
+
+        viewModel.errorOnIncorrectName.observe(this, {
+            Snackbar.make(view, R.string.errorIncorrectName, Snackbar.LENGTH_SHORT).show()
         })
 
         buttonSearch.setOnClickListener(object: View.OnClickListener{
