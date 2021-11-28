@@ -30,13 +30,14 @@ class MainWindowFragment : Fragment(R.layout.fragment_main_window) {
         editTextCityInput = view.findViewById(R.id.fr_main_window_city_input)
         buttonSearch = view.findViewById(R.id.fr_main_window_btn_search)
 
+
         viewModel.cityWeather.observe(this, {
             textViewCityName.text = it.name
-            textViewCityDegrees.text = it.temp.toString()
+            textViewCityDegrees.text = it.tempCelsius.toString()
         })
 
-        viewModel.errorOnIncorrectName.observe(this, {
-            Snackbar.make(view, R.string.errorIncorrectName, Snackbar.LENGTH_SHORT).show()
+        viewModel.dataOnError.observe(this, {
+            Snackbar.make(view, context!!.getString(it), Snackbar.LENGTH_SHORT).show()
         })
 
         buttonSearch.setOnClickListener(object: View.OnClickListener{

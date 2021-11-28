@@ -5,12 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.maksewsha.weatherapp.domain.models.CityWeatherDomain
 import com.maksewsha.weatherapp.domain.models.CityWeatherInfoDomain
+import com.maksewsha.weatherapp.domain.models.ErrorType
 import com.maksewsha.weatherapp.domain.usecases.GetWeatherUseCase
 
 class MainWindowFragmentViewModel(private val getWeatherUseCase: GetWeatherUseCase) : ViewModel() {
 
-    private val error = MutableLiveData<Exception>()
-    val errorOnIncorrectName = error as LiveData<Exception>
+    private val error = MutableLiveData<Int>()
+    val dataOnError = error as LiveData<Int>
 
     private val data = MutableLiveData<CityWeatherInfoDomain>()
     val cityWeather = data as LiveData<CityWeatherInfoDomain>
@@ -22,7 +23,7 @@ class MainWindowFragmentViewModel(private val getWeatherUseCase: GetWeatherUseCa
                 data.value = gettedInfo.cityWeatherInfoDomain
             }
             is CityWeatherDomain.Fail -> {
-                error.value = gettedInfo.exception
+                error.value = gettedInfo.message
             }
         }
     }

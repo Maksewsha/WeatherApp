@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="search_for_your_city">Введите город</string>
+    <string name="search">Искать</string>
+    <string name="noFoundError">Неправильное название города.</string>
+    <string name="connectivityError">Проверьте соединение с интернетом.</string>
+    <string name="otherError">Что-то пошло не так.</string>
+</resources>

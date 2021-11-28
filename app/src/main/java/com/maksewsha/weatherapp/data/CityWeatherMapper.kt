@@ -1,9 +1,12 @@
 package com.maksewsha.weatherapp.data
 
+import com.maksewsha.weatherapp.R
 import com.maksewsha.weatherapp.data.models.CityWeatherData
 import com.maksewsha.weatherapp.domain.models.CityWeatherDomain
 import com.maksewsha.weatherapp.domain.models.CityWeatherInfoDomain
+import com.maksewsha.weatherapp.domain.models.ErrorType
 import com.maksewsha.weatherapp.domain.util.EntityMapper
+import kotlin.math.roundToInt
 
 class CityWeatherMapper : EntityMapper<CityWeatherData, CityWeatherDomain> {
     override fun mapFromEntity(entity: CityWeatherData): CityWeatherDomain {
@@ -14,14 +17,19 @@ class CityWeatherMapper : EntityMapper<CityWeatherData, CityWeatherDomain> {
                         id = entity.cityWeatherNetworkData.id,
                         name = entity.cityWeatherNetworkData.name,
                         country = entity.cityWeatherNetworkData.sys.country,
-                        temp = entity.cityWeatherNetworkData.main.temp,
+                        tempKelvin = entity.cityWeatherNetworkData.main.temp.roundToInt(),
                         weatherDescription = entity.cityWeatherNetworkData.weather[0].description
                     )
                 )
             }
             is CityWeatherData.Fail -> {
                 CityWeatherDomain.Fail(
-                    exception = entity.exception
+                    errorType = entity.errorType,
+                    message = when(entity.errorType){
+                        ErrorType.NoFoundError -> R.string.noFoundError
+                        ErrorType.ConnectivityError -> R.string.connectivityError
+                        ErrorType.OtherError -> R.string.otherError
+                    }
                 )
             }
         }
