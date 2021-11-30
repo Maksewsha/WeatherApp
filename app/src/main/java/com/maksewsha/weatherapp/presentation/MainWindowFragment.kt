@@ -21,19 +21,22 @@ class MainWindowFragment : Fragment(R.layout.fragment_main_window) {
     private lateinit var textViewCityDegrees: TextView
     private lateinit var editTextCityInput: EditText
     private lateinit var buttonSearch: Button
+    private lateinit var textViewDescription: TextView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this, MainWindowFragmentViewModelFactory(context as Context)).get(MainWindowFragmentViewModel::class.java)
 
         textViewCityName = view.findViewById(R.id.fr_main_window_city_name)
         textViewCityDegrees = view.findViewById(R.id.fr_main_window_degrees)
+        textViewDescription = view.findViewById(R.id.fr_main_window_description)
         editTextCityInput = view.findViewById(R.id.fr_main_window_city_input)
         buttonSearch = view.findViewById(R.id.fr_main_window_btn_search)
 
 
         viewModel.cityWeather.observe(this, {
-            textViewCityName.text = it.name
+            textViewCityName.text = "${it.name}, ${it.country}"
             textViewCityDegrees.text = it.tempCelsius.toString()
+            textViewDescription.text  = it.description
         })
 
         viewModel.dataOnError.observe(this, {

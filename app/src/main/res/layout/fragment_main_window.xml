@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
@@ -16,19 +15,28 @@
             android:id="@+id/fr_main_window_city_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            tools:text="Moscow"
+            android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginTop="@dimen/default_margin"
-            android:layout_marginLeft="@dimen/default_margin" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            tools:text="Moscow" />
 
         <TextView
             android:id="@+id/fr_main_window_degrees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="50"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginTop="@dimen/small_margin"
-            android:layout_marginLeft="@dimen/default_margin" />
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            tools:text="50" />
+
+        <TextView
+            android:id="@+id/fr_main_window_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            tools:text="Description" />
 
     </LinearLayout>
 
@@ -37,13 +45,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/default_margin"
-        android:maxLines="1"
+        android:hint="@string/search_for_your_city"
         android:inputType="text"
-        android:hint="@string/search_for_your_city"/>
+        android:maxLines="1" />
+
     <Button
         android:id="@+id/fr_main_window_btn_search"
         android:layout_width="match_parent"
-        android:text="@string/search"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/search" />
 
 </LinearLayout>

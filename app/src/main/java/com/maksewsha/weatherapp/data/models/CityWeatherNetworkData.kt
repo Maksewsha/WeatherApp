@@ -1,13 +1,10 @@
 package com.maksewsha.weatherapp.data.models
 
 import com.google.gson.annotations.SerializedName
-import com.maksewsha.weatherapp.data.models.weathermodels.*
 import com.maksewsha.weatherapp.domain.models.CityWeather
-import com.maksewsha.weatherapp.domain.models.CityWeatherDomain
+
 
 data class CityWeatherNetworkData(
-    @SerializedName("coords")
-    val coords: CoordsInfo,
     @SerializedName("weather")
     val weather: Array<WeatherInfo>,
     @SerializedName("base")
@@ -32,4 +29,64 @@ data class CityWeatherNetworkData(
     val name: String,
     @SerializedName("cod")
     val cod: Int
-): CityWeather()
+): CityWeather() {
+    class CoordsInfo(
+        @SerializedName("lat")
+        val latN: Float,
+        @SerializedName("lon")
+        val lonN: Float
+    )
+
+    class WeatherInfo(
+        @SerializedName("id")
+        val idN: Int,
+        @SerializedName("main")
+        val mainN: String,
+        @SerializedName("description")
+        val descriptionN: String,
+        @SerializedName("icon")
+        val iconN: String
+    )
+
+    class MainInfo(
+        @SerializedName("temp")
+        val tempN: Float,
+        @SerializedName("feels_like")
+        val feelsLikeN: Float,
+        @SerializedName("temp_min")
+        val tempMinN: Float,
+        @SerializedName("temp_max")
+        val tempMaxN: Float,
+        @SerializedName("pressure")
+        val pressureN: Int,
+        @SerializedName("humidity")
+        val humidityN: Int
+    )
+
+    class WindInfo(
+        @SerializedName("speed")
+        val speedN: Float,
+        @SerializedName("deg")
+        val degN: Int
+    )
+
+    class CloudsInfo(
+        @SerializedName("all")
+        val allN: Int
+    )
+
+    class SysInfo(
+        @SerializedName("type")
+        val typeN: Int,
+        @SerializedName("id")
+        val idN: Int,
+        @SerializedName("message")
+        val messageN: Float,
+        @SerializedName("country")
+        val countryN: String,
+        @SerializedName("sunrise")
+        val sunriseN: Long,
+        @SerializedName("sunset")
+        val sunsetN: Long
+    )
+}

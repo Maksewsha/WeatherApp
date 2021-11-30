@@ -1,6 +1,6 @@
 package com.maksewsha.weatherapp.domain.util
 
-interface EntityMapper <Entity, DomainModel> {
+interface EntityMapper <Entity, Model> {
 
-    fun mapFromEntity(entity: Entity): DomainModel
+    fun mapFromEntity(entity: Entity): Model
 }

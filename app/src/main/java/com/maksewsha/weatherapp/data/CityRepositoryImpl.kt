@@ -1,5 +1,6 @@
 package com.maksewsha.weatherapp.data
 
+import android.util.Log
 import com.maksewsha.weatherapp.data.models.CityWeatherData
 import com.maksewsha.weatherapp.data.models.CityWeatherNetworkData
 import com.maksewsha.weatherapp.data.storages.CityStorage
@@ -10,13 +11,14 @@ import com.maksewsha.weatherapp.domain.repository.CityRepository
 
 class CityRepositoryImpl(private val networkStorage: NetworkCityStorage, private val localStorage: CityStorage) : CityRepository {
 
-    private val mapper = CityWeatherMapper()
+    private val mapper = DataToDomainMapper()
 
     override fun getByName(name: String): CityWeatherDomain {
         val dataFromSharedPref = localStorage.getByName(name)
 
         if (dataFromSharedPref is CityWeatherData.Fail){
             val dataFromNetwork = networkStorage.getByName(name)
+            Log.d("myLogs", "$dataFromNetwork")
             return if (dataFromNetwork !is CityWeatherData.Fail){
                 save((dataFromNetwork as CityWeatherData.Success).cityWeatherNetworkData)
                 mapper.mapFromEntity(dataFromNetwork)
