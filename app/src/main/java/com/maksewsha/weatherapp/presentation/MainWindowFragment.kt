@@ -5,9 +5,12 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.maksewsha.weatherapp.R
 import com.maksewsha.weatherapp.presentation.viewmodels.MainWindowFragmentViewModel
@@ -22,6 +25,7 @@ class MainWindowFragment : Fragment(R.layout.fragment_main_window) {
     private lateinit var editTextCityInput: EditText
     private lateinit var buttonSearch: Button
     private lateinit var textViewDescription: TextView
+    private lateinit var imageViewWeatherIcon: ImageView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         viewModel = ViewModelProvider(this, MainWindowFragmentViewModelFactory(context as Context)).get(MainWindowFragmentViewModel::class.java)
@@ -31,12 +35,19 @@ class MainWindowFragment : Fragment(R.layout.fragment_main_window) {
         textViewDescription = view.findViewById(R.id.fr_main_window_description)
         editTextCityInput = view.findViewById(R.id.fr_main_window_city_input)
         buttonSearch = view.findViewById(R.id.fr_main_window_btn_search)
+        imageViewWeatherIcon = view.findViewById(R.id.fr_main_window_icon_image)
 
 
         viewModel.cityWeather.observe(this, {
             textViewCityName.text = "${it.name}, ${it.country}"
             textViewCityDegrees.text = it.tempCelsius.toString()
             textViewDescription.text  = it.description
+            Glide
+                .with(this)
+                .load(it.icon)
+                .fitCenter()
+                .apply(RequestOptions().override(256, 256))
+                .into(imageViewWeatherIcon)
         })
 
         viewModel.dataOnError.observe(this, {

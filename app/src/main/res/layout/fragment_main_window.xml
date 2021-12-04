@@ -6,39 +6,63 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/fr_main_window_city_name"
+        <LinearLayout
+            android:id="@+id/main_info_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginTop="@dimen/default_margin"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            tools:text="Moscow" />
+            android:orientation="vertical"
+            android:layout_weight="1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-        <TextView
-            android:id="@+id/fr_main_window_degrees"
+            <TextView
+                android:id="@+id/fr_main_window_city_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginTop="@dimen/default_margin"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                tools:text="Moscow" />
+
+            <TextView
+                android:id="@+id/fr_main_window_degrees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                tools:text="50" />
+
+            <TextView
+                android:id="@+id/fr_main_window_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin"
+                android:layout_marginTop="@dimen/small_margin"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                tools:text="Description" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/fr_main_window_icon_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin"
             android:layout_marginTop="@dimen/small_margin"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-            tools:text="50" />
+            android:layout_weight="1"
+            app:layout_constraintBottom_toBottomOf="@id/main_info_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/main_info_container"
+            app:layout_constraintStart_toEndOf="@id/main_info_container"
+            tools:src="@drawable/ic_launcher_background" />
 
-        <TextView
-            android:id="@+id/fr_main_window_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_margin"
-            android:layout_marginTop="@dimen/small_margin"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
-            tools:text="Description" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
 
     <EditText
         android:id="@+id/fr_main_window_city_input"
