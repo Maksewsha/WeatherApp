@@ -38,21 +38,21 @@ class MainWindowFragment : Fragment(R.layout.fragment_main_window) {
         imageViewWeatherIcon = view.findViewById(R.id.fr_main_window_icon_image)
 
 
-        viewModel.cityWeather.observe(this, {
+        viewModel.cityWeather.observe(viewLifecycleOwner) {
             textViewCityName.text = "${it.name}, ${it.country}"
             textViewCityDegrees.text = it.tempCelsius.toString()
-            textViewDescription.text  = it.description
+            textViewDescription.text = it.description
             Glide
                 .with(this)
                 .load(it.icon)
                 .fitCenter()
                 .apply(RequestOptions().override(256, 256))
                 .into(imageViewWeatherIcon)
-        })
+        }
 
-        viewModel.dataOnError.observe(this, {
-            Snackbar.make(view, context!!.getString(it), Snackbar.LENGTH_SHORT).show()
-        })
+        viewModel.dataOnError.observe(viewLifecycleOwner) {
+            Snackbar.make(view, requireContext().getString(it), Snackbar.LENGTH_SHORT).show()
+        }
 
         buttonSearch.setOnClickListener(object: View.OnClickListener{
             override fun onClick(p0: View?) {
